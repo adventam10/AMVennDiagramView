@@ -27,7 +27,7 @@ public protocol AMVennDiagramViewDataSource: class {
     func textFontForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIFont
 }
 
-extension AMVennDiagramViewDataSource {
+public extension AMVennDiagramViewDataSource {
     
     func vennDiagramView(vennDiagramView:AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String {
         
