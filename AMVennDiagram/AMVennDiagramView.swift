@@ -9,53 +9,38 @@
 import UIKit
 
 public protocol AMVennDiagramViewDataSource: class {
-    
     func vennDiagramView(vennDiagramView:AMVennDiagramView, fillColorForSection section: Int) -> UIColor
-    
     func vennDiagramView(vennDiagramView:AMVennDiagramView, strokeColorForSection section: Int) -> UIColor
-    
     func vennDiagramView(vennDiagramView:AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String
-    
     func titleForCommonArea(inVennDiagramView:AMVennDiagramView, value: CGFloat) -> String
-    
     func vennDiagramView(vennDiagramView:AMVennDiagramView, textColorForSection section: Int) -> UIColor
-    
     func textColorForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIColor
-    
     func vennDiagramView(vennDiagramView:AMVennDiagramView, textFontForSection section: Int) -> UIFont
-    
     func textFontForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIFont
 }
 
 public extension AMVennDiagramViewDataSource {
-    
     func vennDiagramView(vennDiagramView:AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String {
-        
         return ""
     }
     
     func titleForCommonArea(inVennDiagramView:AMVennDiagramView, value: CGFloat) -> String {
-        
         return ""
     }
     
     func vennDiagramView(vennDiagramView:AMVennDiagramView, textColorForSection section: Int) -> UIColor {
-        
         return UIColor.black
     }
     
     func textColorForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIColor {
-        
         return UIColor.black
     }
     
     func vennDiagramView(vennDiagramView:AMVennDiagramView, textFontForSection section: Int) -> UIFont {
-        
         return UIFont.systemFont(ofSize: 17)
     }
     
     func textFontForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIFont {
-        
         return UIFont.systemFont(ofSize: 17)
     }
 }
@@ -65,9 +50,7 @@ public class AMVennDiagramView: UIView {
     weak public var dataSource:AMVennDiagramViewDataSource?
     
     override public var bounds: CGRect {
-        
         didSet {
-            
             reloadData()
         }
     }
@@ -93,12 +76,10 @@ public class AMVennDiagramView: UIView {
     private var distance: CGFloat = 0
     
     override public func draw(_ rect: CGRect) {
-        
         reloadData()
     }
     
     public func setupVennDiagram(value1: CGFloat, value2: CGFloat, commonValue: CGFloat) {
-        
         self.value1 = value1
         self.value2 = value2
         self.commonValue = commonValue
@@ -107,13 +88,11 @@ public class AMVennDiagramView: UIView {
     }
     
     public func reloadData() {
-        
         clear()
         prepareCircleLayer()
     }
     
     private func clear() {
-        
         distance = 0
         circle1Layer?.removeFromSuperlayer()
         circle2Layer?.removeFromSuperlayer()
@@ -129,28 +108,20 @@ public class AMVennDiagramView: UIView {
     }
     
     private func prepareCircleLayer() {
-        
         guard let dataSource = dataSource else {
-            
             return
         }
         
         setupDistance()
         let rate = calculateRate()
         if rate == AMVErrorValue {
-            
             return
         }
         
         circle1Layer = CAShapeLayer()
-        guard let circle1Layer = circle1Layer else {
-            
-            return
-        }
-        
         circle2Layer = CAShapeLayer()
-        guard let circle2Layer = circle2Layer else {
-            
+        guard let circle1Layer = circle1Layer,
+            let circle2Layer = circle2Layer else {
             return
         }
         
@@ -161,9 +132,7 @@ public class AMVennDiagramView: UIView {
         var x1 = center.x - radius1 - (((radius1 + d + radius2)/2) - radius1)
         var x2 = x1 + radius1 + d - radius2
         if d == abs(radius1 - radius2) {
-            
             if radius1 < radius2 {
-                
                 x2 = center.x - radius2
                 x1 = x2
             }
@@ -195,18 +164,14 @@ public class AMVennDiagramView: UIView {
     }
     
     private func setupDistance() {
-        
         let valueS = value1 < value2 ? value1 : value2
         let radius1 = calculateRadius(area: value1)
         let radius2 = calculateRadius(area: value2)
         
         if commonValue == 0 {
-            
             distance = radius1 + radius2
             return
-            
         } else if commonValue == valueS {
-            
             distance = abs(radius1 - radius2)
             return
         }
@@ -216,15 +181,12 @@ public class AMVennDiagramView: UIView {
     }
     
     private func calculateRate() -> CGFloat {
-        
         if commonValue < 0 || value1 < 0 || value2 < 0 {
-            
             print("AMVennDiagramView Error:  negative value")
             return AMVErrorValue
         }
         
         if value1 == 0.0 || value2 == 0.0 {
-            
             print("AMVennDiagramView Error:  zero value")
             return AMVErrorValue
         }
@@ -233,7 +195,6 @@ public class AMVennDiagramView: UIView {
         let valueS = value1 < value2 ? value1 : value2
         
         if valueS < commonValue {
-            
             print("AMVennDiagramView Error: commonValue is over small value.")
             return AMVErrorValue
         }
@@ -248,20 +209,16 @@ public class AMVennDiagramView: UIView {
     }
     
     private func calculateRadius(area: CGFloat) -> CGFloat {
-        
         return CGFloat(sqrt(Double(area)/Double.pi))
     }
     
     //MARK:- Calculate Distance
     private func compensateDistance(radius1: CGFloat, radius2: CGFloat, distance: CGFloat) -> CGFloat {
-        
         if distance > radius1 + radius2 {
-            
             return radius1 + radius2
         }
         
         if distance < abs(radius1-radius2) {
-            
             return abs(radius1-radius2) + abs(radius1-radius2)*0.2
         }
         
@@ -269,7 +226,6 @@ public class AMVennDiagramView: UIView {
     }
     
     private func calculateDistance(radius1: CGFloat, radius2: CGFloat, totalArea: CGFloat) -> CGFloat {
-        
         let r1 = Double(radius1)
         let r2 = Double(radius2)
         let pi = Double.pi
@@ -277,12 +233,10 @@ public class AMVennDiagramView: UIView {
         var x:Double = ((r1 + r2) + abs(r1-r2))/2
         var index:Int = 0
         while true {
-            
             if x > r1 + r2 ||
                 x < abs(r1-r2) ||
                 x.isNaN ||
                 index > 10000 {
-                
                 return calculateDistance2(radius1: radius1, radius2: radius2, totalArea: totalArea)
             }
             
@@ -304,8 +258,7 @@ public class AMVennDiagramView: UIView {
             
             let x2 = x - (numerator/denominator)
             if abs((x2 - x)/x) < 0.0001 {
-                
-                break;
+                break
             }
             x = x2
             index += 1
@@ -315,7 +268,6 @@ public class AMVennDiagramView: UIView {
     }
     
     private func calculateX(a: Double, b: Double, x: Double, commonF: Double) -> Double {
-        
         let f1 = (-1 / sqrt(1 - pow(commonF, 2))) * ((1/a) - (b/(a*pow(x, 2))))
         
         let f2a = (-2*pow(b, 2))/(pow(a, 2)*pow(x, 3))
@@ -333,7 +285,6 @@ public class AMVennDiagramView: UIView {
     }
 
     private func calculateDistance2(radius1: CGFloat, radius2: CGFloat, totalArea: CGFloat) -> CGFloat {
-        
         let r1 = Double(radius1)
         let r2 = Double(radius2)
         let pi = Double.pi
@@ -341,11 +292,9 @@ public class AMVennDiagramView: UIView {
         var highX = r1 + r2
         var x:Double = (lowX + highX)/2
         while true {
-            
             if x > r1 + r2 ||
                 x < abs(r1-r2) ||
                 x.isNaN {
-                
                 break
             }
             
@@ -357,16 +306,12 @@ public class AMVennDiagramView: UIView {
             let f1 =  area - Double(totalArea)
             
             if abs(f1) < 0.1 {
-                
-                break;
+                break
             }
             
             if f1 > 0 {
-                
                 highX = x
-                
             } else {
-                
                 lowX = x
             }
             x = (lowX + highX)/2
@@ -381,9 +326,7 @@ public class AMVennDiagramView: UIView {
                             radius1: CGFloat,
                             radius2: CGFloat,
                             distance: CGFloat) {
-        
         guard let dataSource = dataSource else {
-            
             return
         }
         
@@ -425,17 +368,12 @@ public class AMVennDiagramView: UIView {
                                 circle2CenterX: CGFloat,
                                 radius1: CGFloat,
                                 radius2: CGFloat) {
-        
         let valueS = value1 < value2 ? value1 : value2
         var maxX = circle2CenterX - radius2
         if commonValue == valueS {
-            
             if value1 < value2 {
-                
                 maxX = circle1CenterX + radius1
-                
             } else if value1 == value2 {
-                
                 maxX = circle1CenterX
             }
         }
@@ -460,17 +398,12 @@ public class AMVennDiagramView: UIView {
                                 circle2CenterX: CGFloat,
                                 radius1: CGFloat,
                                 radius2: CGFloat) {
-        
         let valueS = value1 < value2 ? value1 : value2
         var minX = circle1CenterX + radius1
         if commonValue == valueS {
-            
             if value2 < value1 {
-                
                 minX = circle2CenterX - radius2
-                
             } else if value1 == value2 {
-                
                 minX = circle1CenterX
             }
         }
@@ -496,22 +429,16 @@ public class AMVennDiagramView: UIView {
                                      radius1: CGFloat,
                                      radius2: CGFloat,
                                      distance: CGFloat) {
-        
         if text.isEmpty || commonValue == 0 {
-            
             return
         }
         
         let valueS = value1 < value2 ? value1 : value2
         var minX = circle1CenterX + radius1
         if commonValue == valueS {
-            
             if value2 < value1 {
-                
                 minX = circle2CenterX + 10
-                
             } else if value1 == value2 {
-                
                 minX = circle1CenterX
             }
         }
@@ -529,7 +456,6 @@ public class AMVennDiagramView: UIView {
         commonAreaLabel.sizeToFit()
         rect.size.height = commonAreaLabel.frame.size.height
         if rect.size.height > labelHeight {
-            
             rect.size.height = labelHeight
         }
         commonAreaLabel.frame = rect
@@ -547,10 +473,8 @@ public class AMVennDiagramView: UIView {
                                     radius1: CGFloat,
                                     radius2: CGFloat,
                                     distance: CGFloat) {
-        
         commonAreaLineLayer = CAShapeLayer()
         guard let commonAreaLineLayer = commonAreaLineLayer else {
-            
             return
         }
         
@@ -581,10 +505,8 @@ public class AMVennDiagramView: UIView {
                                                radius1: CGFloat,
                                                radius2: CGFloat,
                                                distance: CGFloat) -> CGFloat {
-        
         let valueS = value1 < value2 ? value1 : value2
         if commonValue == valueS {
-            
             return value2 < value1 ? circle2CenterX : circle1CenterX
         }
         
