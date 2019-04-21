@@ -9,38 +9,38 @@
 import UIKit
 
 public protocol AMVennDiagramViewDataSource: class {
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, fillColorForSection section: Int) -> UIColor
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, strokeColorForSection section: Int) -> UIColor
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String
-    func titleForCommonArea(inVennDiagramView:AMVennDiagramView, value: CGFloat) -> String
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, textColorForSection section: Int) -> UIColor
-    func textColorForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIColor
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, textFontForSection section: Int) -> UIFont
-    func textFontForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIFont
+    func vennDiagramView(_ vennDiagramView: AMVennDiagramView, fillColorForSection section: Int) -> UIColor
+    func vennDiagramView(_ vennDiagramView: AMVennDiagramView, strokeColorForSection section: Int) -> UIColor
+    func vennDiagramView(_ vennDiagramView: AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String
+    func titleForCommonArea(in vennDiagramView: AMVennDiagramView, value: CGFloat) -> String
+    func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textColorForSection section: Int) -> UIColor
+    func textColorForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIColor
+    func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textFontForSection section: Int) -> UIFont
+    func textFontForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIFont
 }
 
 public extension AMVennDiagramViewDataSource {
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String {
+    func vennDiagramView(_ vennDiagramView: AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String {
         return ""
     }
     
-    func titleForCommonArea(inVennDiagramView:AMVennDiagramView, value: CGFloat) -> String {
+    func titleForCommonArea(in vennDiagramView: AMVennDiagramView, value: CGFloat) -> String {
         return ""
     }
     
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, textColorForSection section: Int) -> UIColor {
+    func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textColorForSection section: Int) -> UIColor {
         return UIColor.black
     }
     
-    func textColorForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIColor {
+    func textColorForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIColor {
         return UIColor.black
     }
     
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, textFontForSection section: Int) -> UIFont {
+    func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textFontForSection section: Int) -> UIFont {
         return UIFont.systemFont(ofSize: 17)
     }
     
-    func textFontForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIFont {
+    func textFontForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIFont {
         return UIFont.systemFont(ofSize: 17)
     }
 }
@@ -138,8 +138,8 @@ public class AMVennDiagramView: UIView {
             }
         }
         
-        let strokeColor1 = dataSource.vennDiagramView(vennDiagramView: self, strokeColorForSection: 0)
-        let fillColor1 = dataSource.vennDiagramView(vennDiagramView: self, fillColorForSection: 0)
+        let strokeColor1 = dataSource.vennDiagramView(self, strokeColorForSection: 0)
+        let fillColor1 = dataSource.vennDiagramView(self, fillColorForSection: 0)
         circle1Layer.frame = CGRect(x: x1, y: center.y - radius1, width: radius1*2, height: radius1*2)
         circle1Layer.strokeColor = strokeColor1.cgColor
         circle1Layer.fillColor = fillColor1.cgColor
@@ -147,8 +147,8 @@ public class AMVennDiagramView: UIView {
         circle1Layer.path = path1.cgPath
         layer.addSublayer(circle1Layer)
         
-        let strokeColor2 = dataSource.vennDiagramView(vennDiagramView: self, strokeColorForSection: 1)
-        let fillColor2 = dataSource.vennDiagramView(vennDiagramView: self, fillColorForSection: 1)
+        let strokeColor2 = dataSource.vennDiagramView(self, strokeColorForSection: 1)
+        let fillColor2 = dataSource.vennDiagramView(self, fillColorForSection: 1)
         circle2Layer.frame = CGRect(x: x2, y: center.y - radius2, width: radius2*2, height: radius2*2)
         circle2Layer.strokeColor = strokeColor2.cgColor
         circle2Layer.fillColor = fillColor2.cgColor
@@ -331,27 +331,27 @@ public class AMVennDiagramView: UIView {
         }
         
         let height = frame.size.height/3
-        showArea1Label(text: dataSource.vennDiagramView(vennDiagramView: self, titleForSection: 0, value: value1),
-                       textColor: dataSource.vennDiagramView(vennDiagramView: self, textColorForSection: 0),
-                       font: dataSource.vennDiagramView(vennDiagramView: self, textFontForSection: 0),
+        showArea1Label(text: dataSource.vennDiagramView(self, titleForSection: 0, value: value1),
+                       textColor: dataSource.vennDiagramView(self, textColorForSection: 0),
+                       font: dataSource.vennDiagramView(self, textFontForSection: 0),
                        labelHeight: height,
                        circle1CenterX: circle1CenterX,
                        circle2CenterX: circle2CenterX,
                        radius1: radius1,
                        radius2: radius2)
         
-        showArea2Label(text: dataSource.vennDiagramView(vennDiagramView: self, titleForSection: 1, value: value2),
-                       textColor: dataSource.vennDiagramView(vennDiagramView: self, textColorForSection: 1),
-                       font: dataSource.vennDiagramView(vennDiagramView: self, textFontForSection: 1),
+        showArea2Label(text: dataSource.vennDiagramView(self, titleForSection: 1, value: value2),
+                       textColor: dataSource.vennDiagramView(self, textColorForSection: 1),
+                       font: dataSource.vennDiagramView(self, textFontForSection: 1),
                        labelHeight: height,
                        circle1CenterX: circle1CenterX,
                        circle2CenterX: circle2CenterX,
                        radius1: radius1,
                        radius2: radius2)
         
-        showCommonAreaLabel(text: dataSource.titleForCommonArea(inVennDiagramView: self, value: commonValue),
-                            textColor: dataSource.textColorForCommonArea(inVennDiagramView: self),
-                            font: dataSource.textFontForCommonArea(inVennDiagramView: self),
+        showCommonAreaLabel(text: dataSource.titleForCommonArea(in: self, value: commonValue),
+                            textColor: dataSource.textColorForCommonArea(in: self),
+                            font: dataSource.textFontForCommonArea(in: self),
                             labelHeight: height,
                             circle1CenterX: circle1CenterX,
                             circle2CenterX: circle2CenterX,

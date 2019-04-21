@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, AMVennDiagramViewDataSource {
+class ViewController: UIViewController {
     
     @IBOutlet weak private var vdV0: AMVennDiagramView!
     @IBOutlet weak private var vdV1: AMVennDiagramView!
@@ -56,9 +56,10 @@ class ViewController: UIViewController, AMVennDiagramViewDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, fillColorForSection section: Int) -> UIColor {
-        
+extension ViewController: AMVennDiagramViewDataSource {
+    func vennDiagramView(_ vennDiagramView:AMVennDiagramView, fillColorForSection section: Int) -> UIColor {
         let r = CGFloat(arc4random_uniform(255) + 1)/255.0
         let g = CGFloat(arc4random_uniform(255) + 1)/255.0
         let b = CGFloat(arc4random_uniform(255) + 1)/255.0
@@ -67,8 +68,7 @@ class ViewController: UIViewController, AMVennDiagramViewDataSource {
         return color
     }
     
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, strokeColorForSection section: Int) -> UIColor {
-        
+    func vennDiagramView(_ vennDiagramView:AMVennDiagramView, strokeColorForSection section: Int) -> UIColor {
         let r = CGFloat(arc4random_uniform(255) + 1)/255.0
         let g = CGFloat(arc4random_uniform(255) + 1)/255.0
         let b = CGFloat(arc4random_uniform(255) + 1)/255.0
@@ -77,21 +77,18 @@ class ViewController: UIViewController, AMVennDiagramViewDataSource {
         return color
     }
     
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String {
-        
+    func vennDiagramView(_ vennDiagramView:AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String {
         let title = section == 0 ? "A" : "B"
         let vakueText = NSString(format: "%.0f", value) as String
         return title + "\n" + vakueText
     }
     
-    func titleForCommonArea(inVennDiagramView:AMVennDiagramView, value: CGFloat) -> String {
-        
+    func titleForCommonArea(in vennDiagramView:AMVennDiagramView, value: CGFloat) -> String {
         let vakueText = NSString(format: "%.0f", value) as String
         return "Common\n" + vakueText
     }
     
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, textColorForSection section: Int) -> UIColor {
-        
+    func vennDiagramView(_ vennDiagramView:AMVennDiagramView, textColorForSection section: Int) -> UIColor {
         let r = CGFloat(arc4random_uniform(255) + 1)/255.0
         let g = CGFloat(arc4random_uniform(255) + 1)/255.0
         let b = CGFloat(arc4random_uniform(255) + 1)/255.0
@@ -100,8 +97,7 @@ class ViewController: UIViewController, AMVennDiagramViewDataSource {
         return color
     }
     
-    func textColorForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIColor {
-        
+    func textColorForCommonArea(in vennDiagramView:AMVennDiagramView) -> UIColor {
         let r = CGFloat(arc4random_uniform(255) + 1)/255.0
         let g = CGFloat(arc4random_uniform(255) + 1)/255.0
         let b = CGFloat(arc4random_uniform(255) + 1)/255.0
@@ -110,15 +106,11 @@ class ViewController: UIViewController, AMVennDiagramViewDataSource {
         return color
     }
     
-    func vennDiagramView(vennDiagramView:AMVennDiagramView, textFontForSection section: Int) -> UIFont {
-        
+    func vennDiagramView(_ vennDiagramView:AMVennDiagramView, textFontForSection section: Int) -> UIFont {
         return UIFont.systemFont(ofSize: 17)
     }
     
-    func textFontForCommonArea(inVennDiagramView:AMVennDiagramView) -> UIFont {
-        
+    func textFontForCommonArea(in vennDiagramView:AMVennDiagramView) -> UIFont {
         return UIFont.systemFont(ofSize: 17)
     }
-
 }
-
