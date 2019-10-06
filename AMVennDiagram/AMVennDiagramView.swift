@@ -9,8 +9,10 @@
 import UIKit
 
 public protocol AMVennDiagramViewDataSource: AnyObject {
+    // MARK:- Required
     func vennDiagramView(_ vennDiagramView: AMVennDiagramView, fillColorForSection section: Int) -> UIColor
     func vennDiagramView(_ vennDiagramView: AMVennDiagramView, strokeColorForSection section: Int) -> UIColor
+    // MARK:- Optional
     func vennDiagramView(_ vennDiagramView: AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String
     func titleForCommonArea(in vennDiagramView: AMVennDiagramView, value: CGFloat) -> String
     func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textColorForSection section: Int) -> UIColor
