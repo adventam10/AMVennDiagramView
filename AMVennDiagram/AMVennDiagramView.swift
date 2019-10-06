@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol AMVennDiagramViewDataSource: class {
+public protocol AMVennDiagramViewDataSource: AnyObject {
     func vennDiagramView(_ vennDiagramView: AMVennDiagramView, fillColorForSection section: Int) -> UIColor
     func vennDiagramView(_ vennDiagramView: AMVennDiagramView, strokeColorForSection section: Int) -> UIColor
     func vennDiagramView(_ vennDiagramView: AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String
@@ -29,25 +29,26 @@ public extension AMVennDiagramViewDataSource {
     }
     
     func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textColorForSection section: Int) -> UIColor {
-        return UIColor.black
+        return .black
     }
     
     func textColorForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIColor {
-        return UIColor.black
+        return .black
     }
     
     func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textFontForSection section: Int) -> UIFont {
-        return UIFont.systemFont(ofSize: 17)
+        return .systemFont(ofSize: 17)
     }
     
     func textFontForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIFont {
-        return UIFont.systemFont(ofSize: 17)
+        return .systemFont(ofSize: 17)
     }
 }
 
 public class AMVennDiagramView: UIView {
 
-    weak public var dataSource:AMVennDiagramViewDataSource?
+    weak public var dataSource: AMVennDiagramViewDataSource?
+    public var commonAreaLineColor: UIColor = .black
     
     override public var bounds: CGRect {
         didSet {
@@ -55,24 +56,19 @@ public class AMVennDiagramView: UIView {
         }
     }
 
-    public var commonAreaLineColor:UIColor = UIColor.black
-    
-    private let AMVErrorValue:CGFloat = -1.0
-    private let AMVLabelSpace:CGFloat = 5
+    private let AMVErrorValue: CGFloat = -1.0
+    private let AMVLabelSpace: CGFloat = 5
     private let AMVCommonAreaLabelLineLength: CGFloat = 10
+    private let area1Label = UILabel()
+    private let area2Label = UILabel()
+    private let commonAreaLabel = UILabel()
     
-    private let area1Label:UILabel = UILabel()
-    private let area2Label:UILabel = UILabel()
-    private let commonAreaLabel:UILabel = UILabel()
     private var commonAreaLineLayer: CAShapeLayer?
-    
     private var circle1Layer: CAShapeLayer?
     private var circle2Layer: CAShapeLayer?
-    
     private var commonValue: CGFloat = 0.0
     private var value1: CGFloat = 0.0
     private var value2: CGFloat = 0.0
-    
     private var distance: CGFloat = 0
     
     override public func draw(_ rect: CGRect) {
@@ -321,11 +317,8 @@ public class AMVennDiagramView: UIView {
     }
     
     //MARK:- Show Labels
-    private func showLabels(circle1CenterX: CGFloat,
-                            circle2CenterX: CGFloat,
-                            radius1: CGFloat,
-                            radius2: CGFloat,
-                            distance: CGFloat) {
+    private func showLabels(circle1CenterX: CGFloat, circle2CenterX: CGFloat,
+                            radius1: CGFloat, radius2: CGFloat, distance: CGFloat) {
         guard let dataSource = dataSource else {
             return
         }
@@ -360,14 +353,9 @@ public class AMVennDiagramView: UIView {
                             distance: distance)
     }
     
-    private func showArea1Label(text: String,
-                                textColor: UIColor,
-                                font: UIFont,
-                                labelHeight: CGFloat,
-                                circle1CenterX: CGFloat,
-                                circle2CenterX: CGFloat,
-                                radius1: CGFloat,
-                                radius2: CGFloat) {
+    private func showArea1Label(text: String, textColor: UIColor, font: UIFont,
+                                labelHeight: CGFloat, circle1CenterX: CGFloat, circle2CenterX: CGFloat,
+                                radius1: CGFloat, radius2: CGFloat) {
         let valueS = value1 < value2 ? value1 : value2
         var maxX = circle2CenterX - radius2
         if commonValue == valueS {
@@ -390,14 +378,9 @@ public class AMVennDiagramView: UIView {
         addSubview(area1Label)
     }
     
-    private func showArea2Label(text: String,
-                                textColor: UIColor,
-                                font: UIFont,
-                                labelHeight: CGFloat,
-                                circle1CenterX: CGFloat,
-                                circle2CenterX: CGFloat,
-                                radius1: CGFloat,
-                                radius2: CGFloat) {
+    private func showArea2Label(text: String, textColor: UIColor, font: UIFont,
+                                labelHeight: CGFloat, circle1CenterX: CGFloat, circle2CenterX: CGFloat,
+                                radius1: CGFloat, radius2: CGFloat) {
         let valueS = value1 < value2 ? value1 : value2
         var minX = circle1CenterX + radius1
         if commonValue == valueS {
@@ -420,15 +403,9 @@ public class AMVennDiagramView: UIView {
         addSubview(area2Label)
     }
     
-    private func showCommonAreaLabel(text: String,
-                                     textColor: UIColor,
-                                     font: UIFont,
-                                     labelHeight: CGFloat,
-                                     circle1CenterX: CGFloat,
-                                     circle2CenterX: CGFloat,
-                                     radius1: CGFloat,
-                                     radius2: CGFloat,
-                                     distance: CGFloat) {
+    private func showCommonAreaLabel(text: String, textColor: UIColor, font: UIFont,
+                                     labelHeight: CGFloat, circle1CenterX: CGFloat, circle2CenterX: CGFloat,
+                                     radius1: CGFloat, radius2: CGFloat, distance: CGFloat) {
         if text.isEmpty || commonValue == 0 {
             return
         }
@@ -468,11 +445,8 @@ public class AMVennDiagramView: UIView {
                            distance: distance)
     }
     
-    private func showCommonAreaLine(circle1CenterX: CGFloat,
-                                    circle2CenterX: CGFloat,
-                                    radius1: CGFloat,
-                                    radius2: CGFloat,
-                                    distance: CGFloat) {
+    private func showCommonAreaLine(circle1CenterX: CGFloat, circle2CenterX: CGFloat,
+                                    radius1: CGFloat, radius2: CGFloat, distance: CGFloat) {
         commonAreaLineLayer = CAShapeLayer()
         guard let commonAreaLineLayer = commonAreaLineLayer else {
             return
@@ -500,11 +474,8 @@ public class AMVennDiagramView: UIView {
         layer.addSublayer(commonAreaLineLayer)
     }
     
-    private func calculateCommonAreaLineStartX(circle1CenterX: CGFloat,
-                                               circle2CenterX: CGFloat,
-                                               radius1: CGFloat,
-                                               radius2: CGFloat,
-                                               distance: CGFloat) -> CGFloat {
+    private func calculateCommonAreaLineStartX(circle1CenterX: CGFloat, circle2CenterX: CGFloat,
+                                               radius1: CGFloat, radius2: CGFloat, distance: CGFloat) -> CGFloat {
         let valueS = value1 < value2 ? value1 : value2
         if commonValue == valueS {
             return value2 < value1 ? circle2CenterX : circle1CenterX
