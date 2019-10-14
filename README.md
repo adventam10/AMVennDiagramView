@@ -4,6 +4,7 @@
 ![Pod License](https://img.shields.io/cocoapods/l/AMVennDiagramView.svg?style=flat)
 [![Pod Version](https://img.shields.io/cocoapods/v/AMVennDiagramView.svg?style=flat)](http://cocoapods.org/pods/AMVennDiagramView)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 
 `AMVennDiagramView` is a view can display the diagram like Venn diagram. It displays two circles whose area ratio is almost an accurate.
 
