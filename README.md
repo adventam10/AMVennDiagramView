@@ -31,12 +31,12 @@ func vennDiagramView(_ vennDiagramView: AMVennDiagramView, fillColorForSection s
 func vennDiagramView(_ vennDiagramView: AMVennDiagramView, strokeColorForSection section: Int) -> UIColor
     
 // MARK:- Optional
-func vennDiagramView(_ vennDiagramView: AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String
-func titleForCommonArea(in vennDiagramView: AMVennDiagramView, value: CGFloat) -> String
-func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textColorForSection section: Int) -> UIColor
-func textColorForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIColor
-func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textFontForSection section: Int) -> UIFont
-func textFontForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIFont
+func vennDiagramView(_ vennDiagramView: AMVennDiagramView, titleForSection section: Int, value: CGFloat) -> String  // default is empty
+func titleForCommonArea(in vennDiagramView: AMVennDiagramView, value: CGFloat) -> String // default is empty
+func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textColorForSection section: Int) -> UIColor // default is black
+func textColorForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIColor // default is black
+func vennDiagramView(_ vennDiagramView: AMVennDiagramView, textFontForSection section: Int) -> UIFont // default is System 17.0
+func textFontForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIFont // default is System 17.0
 ```
 
 `section` of `value1` is `0`. `section` of `value2` is `1`.
@@ -46,6 +46,7 @@ func textFontForCommonArea(in vennDiagramView: AMVennDiagramView) -> UIFont
 ### CocoaPods
 
 Add this to your Podfile.
+
 ```ogdl
 pod 'AMVennDiagramView'
 ```
