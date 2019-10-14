@@ -1,6 +1,6 @@
 //
 //  AMVennDiagramView.swift
-//  AMVennDiagramView
+//  AMVennDiagramView, https://github.com/adventam10/AMVennDiagramView
 //
 //  Created by am10 on 2018/02/12.
 //  Copyright © 2018年 am10. All rights reserved.

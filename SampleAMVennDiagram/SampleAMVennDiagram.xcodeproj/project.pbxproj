@@ -12,7 +12,7 @@
 		0E02EAC22038314D002AB762 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E02EAC02038314D002AB762 /* LaunchScreen.storyboard */; };
 		0E02EACC203831E1002AB762 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E02EACA203831E1002AB762 /* AppDelegate.swift */; };
 		0E02EACD203831E1002AB762 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E02EACB203831E1002AB762 /* ViewController.swift */; };
-		0E02EAD0203831F9002AB762 /* AMVennDiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E02EACF203831F9002AB762 /* AMVennDiagramView.swift */; };
+		0EB234D5235490A200442A85 /* AMVennDiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB234D4235490A200442A85 /* AMVennDiagramView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		0E02EAC32038314D002AB762 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E02EACA203831E1002AB762 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E02EACB203831E1002AB762 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0E02EACF203831F9002AB762 /* AMVennDiagramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMVennDiagramView.swift; sourceTree = "<group>"; };
+		0EB234D4235490A200442A85 /* AMVennDiagramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMVennDiagramView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,20 +68,20 @@
 		0E02EAC9203831E1002AB762 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0E02EACE203831F9002AB762 /* AMVennDiagram */,
+				0EB234D3235490A200442A85 /* Source */,
 				0E02EACA203831E1002AB762 /* AppDelegate.swift */,
 				0E02EACB203831E1002AB762 /* ViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		0E02EACE203831F9002AB762 /* AMVennDiagram */ = {
+		0EB234D3235490A200442A85 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				0E02EACF203831F9002AB762 /* AMVennDiagramView.swift */,
+				0EB234D4235490A200442A85 /* AMVennDiagramView.swift */,
 			);
-			name = AMVennDiagram;
-			path = ../../../AMVennDiagram;
+			name = Source;
+			path = ../../../Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,7 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E02EACD203831E1002AB762 /* ViewController.swift in Sources */,
-				0E02EAD0203831F9002AB762 /* AMVennDiagramView.swift in Sources */,
+				0EB234D5235490A200442A85 /* AMVennDiagramView.swift in Sources */,
 				0E02EACC203831E1002AB762 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

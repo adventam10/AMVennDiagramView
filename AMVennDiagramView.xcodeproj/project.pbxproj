@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0E02EAE020383374002AB762 /* AMVennDiagramView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E02EADE20383374002AB762 /* AMVennDiagramView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0E02EAEB20383959002AB762 /* AMVennDiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E02EAEA20383959002AB762 /* AMVennDiagramView.swift */; };
+		0EB234D22354909000442A85 /* AMVennDiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB234D12354909000442A85 /* AMVennDiagramView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E02EADB20383374002AB762 /* AMVennDiagramView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AMVennDiagramView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E02EADE20383374002AB762 /* AMVennDiagramView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMVennDiagramView.h; sourceTree = "<group>"; };
 		0E02EADF20383374002AB762 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0E02EAEA20383959002AB762 /* AMVennDiagramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMVennDiagramView.swift; sourceTree = "<group>"; };
+		0EB234D12354909000442A85 /* AMVennDiagramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMVennDiagramView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,7 +32,7 @@
 		0E02EAD120383374002AB762 = {
 			isa = PBXGroup;
 			children = (
-				0E02EAE920383959002AB762 /* AMVennDiagram */,
+				0EB234D02354909000442A85 /* Source */,
 				0E02EADD20383374002AB762 /* AMVennDiagramView */,
 				0E02EADC20383374002AB762 /* Products */,
 			);
@@ -55,12 +55,12 @@
 			path = AMVennDiagramView;
 			sourceTree = "<group>";
 		};
-		0E02EAE920383959002AB762 /* AMVennDiagram */ = {
+		0EB234D02354909000442A85 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				0E02EAEA20383959002AB762 /* AMVennDiagramView.swift */,
+				0EB234D12354909000442A85 /* AMVennDiagramView.swift */,
 			);
-			path = AMVennDiagram;
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,7 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E02EAEB20383959002AB762 /* AMVennDiagramView.swift in Sources */,
+				0EB234D22354909000442A85 /* AMVennDiagramView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
